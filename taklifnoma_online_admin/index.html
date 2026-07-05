@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elektron taklifnoma</title>
+  <meta name="description" content="Online elektron to‘y taklifnomasi" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="public-page">
+  <audio id="weddingMusic" src="assets/music.mp3" preload="auto" loop></audio>
+
+  <div class="status-screen" id="statusScreen">
+    <div class="status-card">
+      <div class="rings">♡</div>
+      <p class="small-title">ONLINE TAKLIFNOMA</p>
+      <h1 id="statusTitle">Taklifnoma yuklanmoqda...</h1>
+      <p id="statusText">Iltimos, biroz kuting.</p>
+      <a class="ghost-btn hidden" id="adminLink" href="/admin">Admin panel</a>
+    </div>
+  </div>
+
+  <div class="loader" id="loader">
+    <div class="loader-card">
+      <div class="rings" aria-hidden="true">♡</div>
+      <p class="small-title" data-field="loaderSmall">TO‘Y TAKLIFNOMASI</p>
+      <h1 data-field="loaderTitle">To‘yiga xush kelibsiz</h1>
+      <div class="dots"><span></span><span></span><span></span></div>
+      <button id="openInvite" class="primary-btn" data-field="loaderButton">Taklifnomani ochish</button>
+      <p class="hint" data-field="loaderHint">Musiqa tugmani bosganingizdan keyin yangraydi</p>
+    </div>
+  </div>
+
+  <button class="music-toggle" id="musicToggle" aria-label="Musiqani yoqish yoki o‘chirish">♪</button>
+
+  <header class="hero" id="home">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div class="ornament top-left" aria-hidden="true"></div>
+    <div class="ornament bottom-right" aria-hidden="true"></div>
+
+    <nav class="top-nav">
+      <a href="#guests" data-field="navGuests">Aziz mehmonlar</a>
+      <a href="#where" data-field="navWhere">Qachon & Qayerda</a>
+      <a href="#story" data-field="navStory">Sayohatimiz</a>
+      <a href="#rsvp" data-field="navRsvp">Javob</a>
+    </nav>
+
+    <div class="hero-card reveal">
+      <div class="badge" data-field="badge">Nikoh tantanasi taklifnomasi</div>
+      <p class="welcome" data-field="welcome">TO‘YGA XUSH KELIBSIZ</p>
+      <h1 class="names"><span data-field="kuyov">Kuyov</span> <span>&</span> <span data-field="kelin">Kelin</span></h1>
+      <p class="quote" data-field="quote">Alloh ularning qalblarini sevgi ila birlashtirdi</p>
+      <div class="date-line">
+        <span data-field="day">17</span>
+        <em data-field="month">Iyul</em>
+        <span data-field="year">2026</span>
+      </div>
+      <p class="venue" data-field="venueLine">To‘yxona · Manzil</p>
+      <div class="hero-actions">
+        <a class="primary-btn" href="#where" data-field="mapButtonText">Manzilni ko‘rish</a>
+        <a class="ghost-btn" href="#rsvp" data-field="rsvpButtonText">Tadbirga javob</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section cream reveal" id="guests">
+      <div class="section-head">
+        <span class="eyebrow" data-field="guestsEyebrow">Aziz mehmonlar</span>
+        <h2 data-field="guestsTitle">Sizni baxt oqshomimizga chorlaymiz</h2>
+      </div>
+      <p class="lead" data-field="guestsText"></p>
+      <div class="mini-cards" id="miniCards"></div>
+    </section>
+
+    <section class="section countdown-section reveal" id="countdown">
+      <div class="section-head light">
+        <span class="eyebrow" data-field="countdownEyebrow">To‘ygacha qolgan vaqt</span>
+        <h2 data-field="countdownTitle">Muqaddas tantanaga sanoq boshlandi</h2>
+      </div>
+      <div class="countdown" aria-label="To‘ygacha qolgan vaqt">
+        <div><b id="days">00</b><span>Kun</span></div>
+        <div><b id="hours">00</b><span>Soat</span></div>
+        <div><b id="minutes">00</b><span>Daqiqa</span></div>
+        <div><b id="seconds">00</b><span>Soniya</span></div>
+      </div>
+    </section>
+
+    <section class="section split reveal" id="where">
+      <div class="info-panel">
+        <span class="eyebrow" data-field="whereEyebrow">Qachon & Qayerda</span>
+        <h2 data-field="whereTitle">To‘yxona manzili</h2>
+        <div class="detail-list">
+          <p><b>Sana:</b> <span data-field="dateDetail"></span></p>
+          <p><b>Vaqt:</b> <span data-field="timeDetail"></span></p>
+          <p><b>Joy:</b> <span data-field="placeDetail"></span></p>
+          <p><b>Manzil:</b> <span data-field="addressDetail"></span></p>
+        </div>
+        <div class="map-buttons">
+          <a id="googleMapBtn" target="_blank" rel="noopener" href="#">Google Xarita</a>
+          <a id="yandexMapBtn" target="_blank" rel="noopener" href="#">Yandex Xarita</a>
+        </div>
+      </div>
+      <div class="map-card" aria-label="Manzil kartasi">
+        <div class="pin">⌖</div>
+        <h3 data-field="mapCardTitle">To‘yxona</h3>
+        <p data-field="mapCardSubtitle">Tantanalar koshonasi</p>
+        <span data-field="mapCardNote">O‘z vaqtida kelishingizni so‘raymiz</span>
+      </div>
+    </section>
+
+    <!-- <section class="section story reveal" id="story">
+      <div class="section-head">
+        <span class="eyebrow" data-field="storyEyebrow">Bizning sayohatimiz</span>
+        <h2 data-field="storyTitle">Sevgi yo‘limiz</h2>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="section gallery reveal" id="gallerySection">
+      <div class="section-head light">
+        <span class="eyebrow" data-field="galleryEyebrow">Shirin lahzalarimiz</span>
+        <h2 data-field="galleryTitle">Muhabbat albomi</h2>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <section class="section poem reveal">
+      <div class="section-head">
+        <span class="eyebrow" data-field="poemEyebrow">Muhabbat satrlari</span>
+        <h2 data-field="poemTitle">Go‘zal tilak</h2>
+      </div>
+      <blockquote id="poemText"></blockquote>
+    </section> -->
+
+    <section class="section rsvp reveal" id="rsvp">
+      <div class="section-head light">
+        <span class="eyebrow" data-field="rsvpEyebrow">Tadbirga javob</span>
+        <h2 data-field="rsvpTitle">Kelishingizni belgilang</h2>
+        <p data-field="rsvpText">Javobingiz tashkilotchiga yuboriladi.</p>
+      </div>
+      <form id="rsvpForm" class="form-card">
+        <input type="text" id="guestName" placeholder="Ismingiz" required />
+        <select id="guestAnswer" required>
+          <option value="">Javobni tanlang</option>
+          <option value="Kelaman">Albatta, kelaman</option>
+          <option value="Kela olmayman">Afsuski, kela olmayman</option>
+          <option value="Aniqlashtiraman">Keyinroq aniqlashtiraman</option>
+        </select>
+        <textarea id="guestWish" rows="4" placeholder="Tilagingizni yozing"></textarea>
+        <button class="primary-btn" type="submit">Yuborish</button>
+        <p class="form-msg" id="rsvpMsg"></p>
+      </form>
+      <div class="guestbook" id="guestbook">
+        <h3 data-field="guestbookTitle">Mehmonlar kitobi</h3>
+        <div class="wishes" id="wishes"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-field="footerMain"></p>
+    <span data-field="footerSub"></span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taklifnoma Admin Panel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-page">
+  <div class="admin-wrap">
+    <header class="admin-top">
+      <div>
+        <h1>Taklifnoma Admin Panel</h1>
+        <p>Bitta deploy, xohlagancha taklifnoma, hammasi onlayn bazadan boshqariladi.</p>
+      </div>
+      <div class="admin-actions">
+        <a class="admin-btn" href="/" target="_blank">Saytni ochish</a>
+        <button class="admin-btn red hidden" id="logoutBtn">Chiqish</button>
+      </div>
+    </header>
+
+    <section id="setupBox" class="setup-warning hidden">
+      <b>Supabase hali sozlanmagan.</b><br>
+      config.js faylini ochib, SUPABASE_URL va SUPABASE_ANON_KEY joyiga Supabase Project URL va anon/public key ni yozing.
+    </section>
+
+    <section class="admin-panel login-card" id="loginPanel">
+      <h2>Admin kirish</h2>
+      <form class="admin-form" id="loginForm">
+        <label>Email
+          <input type="email" id="loginEmail" placeholder="admin@email.com" required>
+        </label>
+        <label>Parol
+          <input type="password" id="loginPassword" placeholder="Parol" required>
+        </label>
+        <button class="admin-btn gold" type="submit">Kirish</button>
+        <p class="admin-msg" id="loginMsg"></p>
+      </form>
+      <p class="help">Admin foydalanuvchini Supabase → Authentication → Users bo‘limidan yaratasiz.</p>
+    </section>
+
+    <section class="admin-grid hidden" id="dashboard">
+      <aside class="admin-panel">
+        <h2>Taklifnomalar</h2>
+        <div class="admin-actions">
+          <button class="admin-btn gold" id="newBtn">+ Yangi</button>
+          <button class="admin-btn" id="refreshBtn">Yangilash</button>
+        </div>
+        <p class="admin-msg" id="listMsg"></p>
+        <div class="invite-list" id="inviteList"></div>
+      </aside>
+
+      <main class="admin-panel">
+        <div class="tabs">
+          <button class="tab active" data-tab="mainTab">Asosiy</button>
+          <button class="tab" data-tab="textTab">Matnlar</button>
+          <button class="tab" data-tab="mediaTab">Media</button>
+          <button class="tab" data-tab="rsvpTab">Javoblar</button>
+        </div>
+
+        <form class="admin-form" id="inviteForm">
+          <section class="tab-page active" id="mainTab">
+            <h2>Asosiy ma’lumotlar</h2>
+            <div class="fields-grid">
+              <label>Link nomi / slug
+                <input id="slug" name="slug" placeholder="diyor-sevinch" required>
+              </label>
+              <label class="checkbox-row">Aktiv holatda ko‘rsatish
+                <input id="is_active" name="is_active" type="checkbox" checked>
+              </label>
+              <label>Kuyov ismi
+                <input name="kuyov" placeholder="Diyor" required>
+              </label>
+              <label>Kelin ismi
+                <input name="kelin" placeholder="Sevinch" required>
+              </label>
+              <label>Sana va vaqt
+                <input name="dateISO" type="datetime-local" required>
+              </label>
+              <label>To‘yxona qisqa qatori
+                <input name="venueLine" placeholder="“Versal” to‘yxonasi · Toshkent">
+              </label>
+              <label>Vaqt matni
+                <input name="timeDetail" placeholder="18:00 da boshlanadi">
+              </label>
+              <label>To‘yxona nomi
+                <input name="placeDetail" placeholder="“Versal” tantanalar koshonasi">
+              </label>
+              <label class="wide">Manzil
+                <input name="addressDetail" placeholder="Toshkent shahri, ...">
+              </label>
+              <label>Google Maps link
+                <input name="googleMapsUrl" placeholder="https://www.google.com/maps/...">
+              </label>
+              <label>Yandex Maps link
+                <input name="yandexMapsUrl" placeholder="https://yandex.com/maps/...">
+              </label>
+            </div>
+            <div class="copy-box wide" style="margin-top:14px">
+              <input id="publicLink" readonly placeholder="Saqlagandan keyin link chiqadi">
+              <button class="admin-btn green" type="button" id="copyLinkBtn">Linkni nusxalash</button>
+              <a class="admin-btn" id="openPublicBtn" href="#" target="_blank">Ochish</a>
+            </div>
+          </section>
+
+          <section class="tab-page" id="textTab">
+            <h2>Matn va bo‘limlar</h2>
+            <div class="fields-grid">
+              <label>Sayt title
+                <input name="siteTitle">
+              </label>
+              <label>Badge
+                <input name="badge" placeholder="Nikoh tantanasi taklifnomasi">
+              </label>
+              <label class="wide">Welcome satri
+                <input name="welcome" placeholder="DIYOR VA SEVINCH TO‘YIGA XUSH KELIBSIZ">
+              </label>
+              <label class="wide">Iqtibos / quote
+                <input name="quote" placeholder="Alloh ularning qalblarini sevgi ila birlashtirdi">
+              </label>
+              <label class="wide">Aziz mehmonlar matni
+                <textarea name="guestsText" rows="4"></textarea>
+              </label>
+              <label class="wide">She’r / tilak matni
+                <textarea name="poemText" rows="5"></textarea>
+              </label>
+              <label class="wide">Mini kartalar — har qator: Sarlavha | Matn
+                <textarea id="miniCardsText" rows="4"></textarea>
+              </label>
+              <label class="wide">Sayohat timeline — har qator: Vaqt | Sarlavha | Matn
+                <textarea id="timelineText" rows="5"></textarea>
+              </label>
+              <label class="wide">Mehmonlar kitobi default tilaklar — har qator: Ism | Matn
+                <textarea id="wishesText" rows="4"></textarea>
+              </label>
+              <label>Map kartasi sarlavha
+                <input name="mapCardTitle">
+              </label>
+              <label>Map kartasi izoh
+                <input name="mapCardSubtitle">
+              </label>
+              <label class="wide">Footer asosiy matn
+                <input name="footerMain">
+              </label>
+            </div>
+          </section>
+
+          <section class="tab-page" id="mediaTab">
+            <h2>Rasm va musiqa</h2>
+            <div class="fields-grid">
+              <label class="wide">Musiqa URL
+                <input name="musicUrl" placeholder="assets/music.mp3 yoki Supabase URL">
+              </label>
+              <div class="admin-files wide">
+                <label>Musiqa yuklash
+                  <input type="file" id="musicFile" accept="audio/*">
+                </label>
+                <button class="admin-btn green" type="button" id="uploadMusicBtn">Musiqani yuklash</button>
+              </div>
+              <label class="wide">Galereya — har qator: Matn | Rasm URL
+                <textarea id="galleryText" rows="6"></textarea>
+              </label>
+              <div class="admin-files wide">
+                <label>Galereya rasmi yuklash
+                  <input type="file" id="imageFile" accept="image/*">
+                </label>
+                <button class="admin-btn green" type="button" id="uploadImageBtn">Rasm URL olish</button>
+              </div>
+              <p class="help wide">Yuklangan rasm URL manzili avtomatik galereya maydoniga qo‘shiladi. Xohlasangiz matnini o‘zgartirib qo‘yasiz.</p>
+            </div>
+          </section>
+
+          <section class="tab-page" id="rsvpTab">
+            <h2>Mehmonlar javoblari</h2>
+            <div class="admin-actions">
+              <button type="button" class="admin-btn" id="loadRsvpBtn">Javoblarni yuklash</button>
+            </div>
+            <p class="admin-msg" id="rsvpMsg"></p>
+            <div style="overflow:auto">
+              <table class="rsvp-table">
+                <thead><tr><th>Ism</th><th>Javob</th><th>Tilak</th><th>Vaqt</th></tr></thead>
+                <tbody id="rsvpBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <p class="admin-msg" id="saveMsg"></p>
+          <div class="admin-actions">
+            <button class="admin-btn gold" type="submit">Saqlash</button>
+            <button class="admin-btn" type="button" id="cloneBtn">Nusxa olib yangi qilish</button>
+            <button class="admin-btn red" type="button" id="deleteBtn">O‘chirish</button>
+          </div>
+        </form>
+      </main>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
