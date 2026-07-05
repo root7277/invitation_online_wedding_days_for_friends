@@ -79,3 +79,112 @@ button,input,select,textarea{font:inherit}
 
 @media(max-width:900px){.top-nav{max-width:calc(100vw - 20px);overflow:auto;justify-content:flex-start}.hero-card{min-height:620px;padding:58px 24px}.names{font-size:56px}.split,.admin-grid{grid-template-columns:1fr}.mini-cards,.countdown,.gallery-grid{grid-template-columns:repeat(2,1fr)}.fields-grid{grid-template-columns:1fr}.admin-top{flex-direction:column}.invite-list{max-height:none}}
 @media(max-width:560px){.top-nav{top:10px;border-radius:20px}.top-nav a{font-size:13px;padding:10px 12px}.music-toggle{right:16px;top:auto;bottom:20px}.hero{padding-top:115px}.hero-card{border-radius:36px}.hero-card:before{inset:14px;border-radius:28px}.names{font-size:46px}.date-line{gap:14px}.date-line span{font-size:32px}.date-line em{font-size:12px;letter-spacing:.2em}.section{padding:70px 16px}.section-head h2{font-size:34px}.lead{font-size:18px}.mini-cards,.countdown,.gallery-grid{grid-template-columns:1fr}.countdown b{font-size:42px}.info-panel,.map-card{padding:28px}.copy-box,.admin-files{flex-direction:column;align-items:stretch}}
+
+
+/* ==========================================================
+   FINAL MOBILE NAVBAR FIX
+   Telefon ekranida yuqoridagi nav bar yon tomonga scroll bo‘lmaydi,
+   matnlar pastga tushmaydi, ekran hajmiga qarab kichrayadi.
+   Sahifaning o‘zi esa odatdagidek pastga scroll bo‘laveradi.
+   ========================================================== */
+
+.top-nav{
+  box-sizing:border-box;
+}
+
+.top-nav a{
+  box-sizing:border-box;
+  white-space:nowrap;
+}
+
+/* Tablet va kichik ekranlarda nav bar sig‘adigan bo‘lsin */
+@media(max-width:900px){
+  .top-nav{
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:calc(100vw - 24px) !important;
+    max-width:760px !important;
+
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+
+    gap:6px !important;
+    padding:9px !important;
+    overflow-x:hidden !important;
+    overflow-y:hidden !important;
+  }
+
+  .top-nav a{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+    max-width:none !important;
+
+    text-align:center !important;
+    white-space:nowrap !important;
+
+    font-size:clamp(10px,1.8vw,14px) !important;
+    line-height:1 !important;
+    padding:11px 4px !important;
+    letter-spacing:-.2px !important;
+  }
+}
+
+/* Telefon ekranida 4 ta menyu bir qatorda sig‘adi */
+@media(max-width:650px){
+  .top-nav{
+    top:10px !important;
+    left:10px !important;
+    right:10px !important;
+    transform:none !important;
+
+    width:calc(100vw - 20px) !important;
+    max-width:calc(100vw - 20px) !important;
+
+    border-radius:24px !important;
+    gap:2px !important;
+    padding:7px 5px !important;
+
+    overflow-x:hidden !important;
+    overflow-y:hidden !important;
+  }
+
+  .top-nav a{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+
+    font-size:clamp(8px,2.3vw,12px) !important;
+    line-height:1 !important;
+    padding:9px 2px !important;
+    letter-spacing:-.45px !important;
+    white-space:nowrap !important;
+  }
+
+  .hero{
+    padding-top:110px !important;
+  }
+}
+
+/* Juda kichik telefonlar uchun qo‘shimcha ixchamlashtirish */
+@media(max-width:380px){
+  .top-nav{
+    left:6px !important;
+    right:6px !important;
+    width:calc(100vw - 12px) !important;
+    max-width:calc(100vw - 12px) !important;
+    padding:6px 3px !important;
+    gap:1px !important;
+  }
+
+  .top-nav a{
+    font-size:clamp(7px,2.05vw,9px) !important;
+    padding:8px 1px !important;
+    letter-spacing:-.6px !important;
+  }
+
+  .hero{
+    padding-top:104px !important;
+  }
+}
